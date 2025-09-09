@@ -786,7 +786,7 @@ import os
 download_model()
 
 # Step 2: Load model safely
-model_path = 'best_tb_model.h5'
+model_path = 'models/best_tb_model.h5'
 
 model = None  # Initialize model variable to avoid NameError
 
@@ -825,6 +825,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
