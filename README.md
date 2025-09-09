@@ -1,56 +1,60 @@
-<h1>📌 Sign Language Digit Recognition</h1>
-This project is a real-time sign language digit recognition system that uses MediaPipe, OpenCV, and a deep learning model (CNN) to detect and recognize hand gestures representing digits (0–9). It provides both visual and voice feedback for accessibility and smooth interaction.
+<h1>🩺 AI-Powered Tuberculosis Detection System with ICU Recommendation</h1>
 
-<h3>🚀 Features</h3>
-Real-Time Hand Detection: Uses MediaPipe Hands for accurate detection and tracking of finger positions.
+This project is an AI-driven medical imaging tool designed to assist healthcare professionals in detecting Tuberculosis (TB) from chest X-rays and assessing the severity of infection.
 
-Finger Counting & Gesture Detection: Counts extended fingers for quick numeric detection.
+Built with Flask, TensorFlow/Keras, and a clean Bootstrap UI, the system provides not only TB detection but also an ICU recommendation module that classifies patients into High, Moderate, or Low risk categories — helping clinicians prioritize urgent cases.
 
-Deep Learning Model (CNN): Trained on a custom Sign Language Digits Dataset for higher recognition accuracy.
+<h3>✨ Key Features</h3>
 
-Voice Feedback: Uses pyttsx3 for instant spoken output of detected numbers.
+📌 AI-Powered Detection
 
-Data Augmentation: Improves model generalization using rotation, zoom, brightness adjustment, and shifts.
+Deep Learning (CNN) model for TB detection
 
-Multi-Hand Support: Detects and counts fingers from both hands simultaneously.
+Real-time classification of X-rays into TB Detected / No TB
 
-Optimized for Smooth Performance: Non-blocking audio processing and lightweight video handling.
+📌 Severity Assessment
 
-<h3>🛠️ Technologies Used</h3>
-Python – Core programming language
+Confidence score with severity levels:
 
-OpenCV – Real-time image capture and processing
+🔴 High Severity
 
-MediaPipe – Hand landmark detection
+🟠 Moderate Severity
 
-Keras & TensorFlow – CNN model training and prediction
+🟢 Low Severity
 
-NumPy – Array and image data handling
+📌 ICU Recommendation
 
-scikit-learn – Dataset splitting & evaluation
+Automatic triage suggestions based on severity
 
-pyttsx3 – Offline text-to-speech engine
+ICU requirement with urgency levels:
 
-<h3>📂 Project Workflow</h3>
-Model Training
+Immediate Admission
 
-Loads the Sign Language Digits Dataset.
+Within 24 Hours
 
-Preprocesses and augments images.
+Outpatient Follow-Up
 
-Builds and trains a CNN with Conv2D, MaxPooling, BatchNormalization, and Dropout layers.
+📌 Interactive Web Dashboard
 
-Saves the trained model for real-time prediction.
+Simple Drag & Drop upload or file browser
 
-Real-Time Recognition
+Preview of uploaded X-ray before analysis
 
-Captures webcam feed using OpenCV.
+Clean, responsive UI with Bootstrap + Font Awesome
 
-Detects hand landmarks via MediaPipe.
+One-click Print Report feature for medical documentation
 
-Counts fingers and matches gestures to digits.
+📌 Medical Disclaimer
 
-Displays the recognized number on the screen.
+Clearly states that this system is decision support only and not a replacement for clinical diagnosis.
 
-Speaks the detected digit via text-to-speech.
+<h3>🛠️ Tech Stack</h3>
+
+Backend: Flask (Python)
+
+Deep Learning: TensorFlow / Keras (VGG16 model)
+
+Frontend: HTML, CSS (Bootstrap 5), JavaScript
+
+Visualization: Confidence progress bars, severity indicators
 
