@@ -778,26 +778,31 @@ if __name__ == "__main__":
 
 
 
-from download_models import download_model
+import h5py
 from keras.models import load_model
 import os
 
-# Step 1: Download model if missing
-download_model()
-
-# Step 2: Load model safely
 model_path = 'models/best_tb_model.h5'
+fixed_model_path = 'models/fixed_tb_model.h5'
 
-model = None  # Initialize model variable to avoid NameError
+def fix_legacy_h5_model(old_path, new_path):
+    with h5py.File(old_path, 'r+') as f:
+        # Remove the problematic attribute if it exists
+        if 'batch_shape' in f.attrs:
+            del f.attrs['batch_shape']
+    # Copy the file to a new path
+    os.rename(old_path, new_path)
 
-if os.path.exists(model_path) and os.path.getsize(model_path) > 0:
+if os.path.exists(model_path):
     try:
-        # Load model without compiling to avoid legacy H5 issues
-        model = load_model(model_path, compile=False)
-        print("✅ Model loaded successfully (compile=False)")
+        # Fix legacy H5
+        fix_legacy_h5_model(model_path, fixed_model_path)
 
-        # Optional: compile manually based on your model type
-        # Use binary_crossentropy for binary classification
+        # Load the fixed model
+        model = load_model(fixed_model_path, compile=False)
+        print("✅ Legacy model loaded successfully")
+
+        # Compile manually
         model.compile(
             optimizer='adam',
             loss='binary_crossentropy',
@@ -806,10 +811,11 @@ if os.path.exists(model_path) and os.path.getsize(model_path) > 0:
         print("✅ Model compiled successfully")
 
     except Exception as e:
-        print(f"❌ Failed to load model: {e}")
+        print(f"❌ Failed to load legacy model: {e}")
         model = None
 else:
-    raise Exception("❌ Model file missing or corrupted!")
+    raise Exception("❌ Model file missing!")
+
 
 # Now 'model' is safe to use in the rest of your Streamlit app
 
@@ -825,6 +831,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
