@@ -776,6 +776,8 @@ if __name__ == "__main__":
     elif selected_page == "ℹ️ About":
         about_section()
 
+
+
 from download_models import download_model
 from keras.models import load_model
 import os
@@ -784,31 +786,32 @@ import os
 download_model()
 
 # Step 2: Load model safely
-import h5py
-from keras.models import load_model
-import os
-
 model_path = 'models/best_tb_model.h5'
 
-def load_legacy_h5_model(path):
-    with h5py.File(path, 'r') as f:
-        for key in list(f.attrs.keys()):
-            if key == 'batch_shape':
-                del f.attrs[key]
-    model = load_model(path, compile=False)
-    return model
+model = None  # Initialize model variable to avoid NameError
 
 if os.path.exists(model_path) and os.path.getsize(model_path) > 0:
     try:
-        model = load_legacy_h5_model(model_path)
-        print("✅ Model loaded successfully!")
+        # Load model without compiling to avoid legacy H5 issues
+        model = load_model(model_path, compile=False)
+        print("✅ Model loaded successfully (compile=False)")
+
+        # Optional: compile manually based on your model type
+        # Use binary_crossentropy for binary classification
+        model.compile(
+            optimizer='adam',
+            loss='binary_crossentropy',
+            metrics=['accuracy', 'precision', 'recall']
+        )
+        print("✅ Model compiled successfully")
+
     except Exception as e:
-        print("❌ Failed to load model:", e)
+        print(f"❌ Failed to load model: {e}")
+        model = None
 else:
     raise Exception("❌ Model file missing or corrupted!")
 
-# Optional: compile manually if needed
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+# Now 'model' is safe to use in the rest of your Streamlit app
 
 
     
@@ -822,6 +825,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
 
