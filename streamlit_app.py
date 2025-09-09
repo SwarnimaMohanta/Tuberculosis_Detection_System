@@ -784,13 +784,32 @@ import os
 download_model()
 
 # Step 2: Load model safely
+import h5py
+from keras.models import load_model
+import os
+
 model_path = 'models/best_tb_model.h5'
 
+def load_legacy_h5_model(path):
+    with h5py.File(path, 'r') as f:
+        for key in list(f.attrs.keys()):
+            if key == 'batch_shape':
+                del f.attrs[key]
+    model = load_model(path, compile=False)
+    return model
+
 if os.path.exists(model_path) and os.path.getsize(model_path) > 0:
-    model = load_model(model_path)
-    print("✅ Model loaded successfully!")
+    try:
+        model = load_legacy_h5_model(model_path)
+        print("✅ Model loaded successfully!")
+    except Exception as e:
+        print("❌ Failed to load model:", e)
 else:
     raise Exception("❌ Model file missing or corrupted!")
+
+# Optional: compile manually if needed
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
 
     
     # Footer
@@ -804,5 +823,6 @@ else:
         unsafe_allow_html=True
 
     )
+
 
 
