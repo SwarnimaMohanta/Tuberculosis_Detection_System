@@ -775,6 +775,14 @@ if __name__ == "__main__":
         model_evaluation_section()
     elif selected_page == "ℹ️ About":
         about_section()
+
+    from download_model import download_model
+
+download_model()
+
+from keras.models import load_model
+model = load_model('models/best_tb_model.h5')
+
     
     # Footer
     st.markdown("---")
@@ -785,4 +793,5 @@ if __name__ == "__main__":
         </div>
         """, 
         unsafe_allow_html=True
+
     )
