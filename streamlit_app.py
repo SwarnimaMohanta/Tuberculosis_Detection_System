@@ -776,12 +776,12 @@ if __name__ == "__main__":
     elif selected_page == "ℹ️ About":
         about_section()
 
-    from download_model import download_model
+    from download_models import download_model
 
-download_model()
+    download_model()
 
-from keras.models import load_model
-model = load_model('models/best_tb_model.h5')
+    from keras.models import load_model
+    model = load_model('models/best_tb_model.h5')
 
     
     # Footer
@@ -795,3 +795,4 @@ model = load_model('models/best_tb_model.h5')
         unsafe_allow_html=True
 
     )
+
