@@ -812,17 +812,18 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 
     
-    # Footer
-    st.markdown("---")
-    st.markdown(
-        """
-        <div style='text-align: center; color: #666; margin-top: 2rem;'>
-            <p>🫁 TB Detection System | Built with Streamlit & TensorFlow | © 2024</p>
-        </div>
-        """, 
-        unsafe_allow_html=True
+   # Footer
+st.markdown("---")
+st.markdown(
+    """
+    <div style='text-align: center; color: #666; margin-top: 2rem;'>
+        <p>🫁 TB Detection System | Built with Streamlit & TensorFlow | © 2024</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-    )
+
 
 
 
