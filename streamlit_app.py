@@ -776,12 +776,21 @@ if __name__ == "__main__":
     elif selected_page == "ℹ️ About":
         about_section()
 
-    from download_models import download_model
+from download_models import download_model
+from keras.models import load_model
+import os
 
-    download_model()
+# Step 1: Download model if missing
+download_model()
 
-    from keras.models import load_model
-    model = load_model('models/best_tb_model.h5')
+# Step 2: Load model safely
+model_path = 'models/best_tb_model.h5'
+
+if os.path.exists(model_path) and os.path.getsize(model_path) > 0:
+    model = load_model(model_path)
+    print("✅ Model loaded successfully!")
+else:
+    raise Exception("❌ Model file missing or corrupted!")
 
     
     # Footer
@@ -795,4 +804,5 @@ if __name__ == "__main__":
         unsafe_allow_html=True
 
     )
+
 
