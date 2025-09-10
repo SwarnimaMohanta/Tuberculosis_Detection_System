@@ -62,7 +62,7 @@ Visualization: Confidence progress bars, severity indicators<br><br>
 Our model achieves state-of-the-art performance on the TBX11K dataset
 
 ### Confusion Matrix
-![Confusion Matrix](https://raw.githubusercontent.com/yourusername/tb-detection/main/images/confusion_matrix.png)
+![Confusion Matrix](confusion_matrix.png)
 
 ### Training Performance
 ![Training Metrics](https://raw.githubusercontent.com/yourusername/tb-detection/main/images/training_metrics.png)
