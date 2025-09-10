@@ -65,7 +65,7 @@ Our model achieves state-of-the-art performance on the TBX11K dataset
 ![Confusion Matrix](confusion_matrix.png)
 
 ### Training Performance
-![Training Metrics](https://raw.githubusercontent.com/yourusername/tb-detection/main/images/training_metrics.png)
+![Training Metrics](training_history.png)
 
 | Metric | Score |
 |--------|-------|
@@ -126,12 +126,12 @@ Our model achieves state-of-the-art performance on the TBX11K dataset
 
               precision    recall  f1-score   support
 
-      Normal       0.96      0.92      0.94       740
-Tuberculosis       0.93      0.97      0.95       126
+          Normal       0.96      0.92      0.94       740
+    Tuberculosis       0.93      0.97      0.95       126
 
-    accuracy                           0.94       866
-   macro avg       0.94      0.94      0.94       866
-weighted avg       0.94      0.94      0.94       866
+         accuracy                           0.94       866
+        macro avg       0.94      0.94      0.94       866
+      weighted avg       0.94      0.94      0.94       866
 
 
 ### Key Metrics Explained
